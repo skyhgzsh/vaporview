@@ -14,6 +14,7 @@ VaporView is an open source waveform viewer extension for Visual Studio Code - [
 - Terminal Links for timestamps and instance paths
 - Remote waveform viewing via VScode SSH and surfer surver
 - IDE integration with other language extensions
+- RISC-V instruction disassembly for 32-bit signals
 
 Vaporview Also supports FSDB files where external libraries are present (see [build FSDB addon](https://github.com/Lramseyer/vaporview/blob/main/GETTING_STARTED.md#optional-build-fsdb-addon)). For use of other waveform dump formats such as LXT, VZT, GTKwave offers conversion tools. Proprietery formats such as WLF and VPD can also be converted, but require you to compile GTKwave. See the [GTKwave Manual](https://gtkwave.sourceforge.net/gtkwave.pdf) for details - page 16, and 69 for an overview.
 
@@ -144,6 +145,13 @@ Vaporview can display values in different number formats. To change the value fo
 | Floating Point | ❌ No                 | Left              |
 | ASCII          | ❌ No                 | Left              |
 | Enum           | ❌ No                 | Left              |
+| RISC-V (Disasm)| ❌ No                 | Left              |
+
+**RISC-V Disassembly Feature:**
+- Supports RV32I base instruction set including Zifencei, Zicsr, and M extensions
+- Converts 32-bit binary values to standard RISC-V assembly instructions
+- Available only for 32-bit wide signals via "Format Values → RISC-V (Disasm)" menu
+- Ideal for debugging RISC-V processor instruction execution in waveform traces
 
 ## Waveform Color
 
@@ -228,6 +236,7 @@ See the [Changelog](https://github.com/Lramseyer/vaporview/blob/main/CHANGELOG.m
   - Multi signal select now batch configures row height and render type (on compatible signals)
   - Custom names for variable items
   - Settings button on the right side of the control bar
+  - RISC-V instruction disassembly for 32-bit signals (Format Values → RISC-V (Disasm))
 - Escape key de-selects all signals
 - Group expanded state is preserved on reload
 - API

@@ -11,6 +11,7 @@
 
 import { htmlSafe, VariableItem } from "./signal_item";
 import { dataManager } from "./vaporview";
+import { formatRiscv } from "./riscv_disasm";
 
 export function  valueIs9State(value: string): boolean {
   if (value.match(/[uxzwlh-]/)) {return true;}
@@ -434,12 +435,12 @@ export class EnumValueFormat implements ValueFormat {
     const result = enumTable.find((entry) => {return entry[0] === inputString;});
     if (result) {return htmlSafe(result[1]);}
     return htmlSafe(inputString);
-  }
+  };
 
-  public checkValidSearch = (inputText: string) => {return dataManager.enumTable[this.enumType].find((entry) => {return entry[0] === inputText;}) !== undefined;}
-  public parseValueForSearch = (inputText: string) => {return inputText;}
-  public is9State = () => {return false;}
-  public checkWidth = (width: number) => {return true;}
+  public checkValidSearch = (inputText: string) => {return dataManager.enumTable[this.enumType].find((entry) => {return entry[0] === inputText;}) !== undefined;};
+  public parseValueForSearch = (inputText: string) => {return inputText;};
+  public is9State = () => {return false;};
+  public checkWidth = (width: number) => {return true;};
 }
 
 // #region Format String
@@ -478,11 +479,12 @@ export const valueFormatList: ValueFormat[] = [
   formatBFloat16,
   formatTensorFloat32,
   formatAscii,
-  formatString
+  formatString,
+  formatRiscv
 ];
 
 export function getNumberFormatById(netlistData: VariableItem, numberFormatId: string): ValueFormat {
-  let valueFormat = valueFormatList.find((format) => format.id === numberFormatId);
+  const valueFormat = valueFormatList.find((format) => format.id === numberFormatId);
   if (valueFormat !== undefined) {return valueFormat;}
   if (numberFormatId === "enum") {
     const enumType = netlistData.enumType;

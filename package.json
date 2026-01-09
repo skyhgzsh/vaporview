@@ -570,6 +570,11 @@
           "command": "vaporview.displayAsAscii",
           "group": "0_default@10",
           "when": "webviewSection == 'signal' && width > '1'"
+        },
+        {
+          "command": "vaporview.displayAsRiscv",
+          "group": "0_default@11",
+          "when": "webviewSection == 'signal' && width == '32'"
         }
       ],
       "vaporview.valueColor": [
@@ -917,6 +922,10 @@
       {
         "command": "vaporview.displayAsEnum",
         "title": "Enum"
+      },
+      {
+        "command": "vaporview.displayAsRiscv",
+        "title": "RISCV (Disasm)"
       },
       {
         "command": "vaporview.renderMultiBit",

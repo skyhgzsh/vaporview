@@ -313,6 +313,10 @@ export async function activate(context: vscode.ExtensionContext) {
     viewerProvider.setValueFormat(e.netlistId,  {valueFormat: "enum"});
   }));
 
+  context.subscriptions.push(vscode.commands.registerCommand('vaporview.displayAsRiscv', (e) => {
+    viewerProvider.setValueFormat(e.netlistId,  {valueFormat: "riscv"});
+  }));
+
   // #region Annotate Edges
   context.subscriptions.push(vscode.commands.registerCommand('vaporview.annotatePosedge', (e) => {
     viewerProvider.setValueFormat(e.netlistId, {annotateValue: ["1"]});
